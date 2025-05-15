@@ -197,7 +197,7 @@ class HomepageController extends AbstractController
         return $this->json(['message' => 'Team member added']);
     }
 
-    #[Route('/teams/update/{id}', name: 'update_team_member', methods: ['POST'])]
+    #[Route(path: '/teams/update/{id}', name: 'update_team_member', methods: ['POST'])]
     public function updateTeamMember(int $id, Request $request, TeamMemberRepository $repo, EntityManagerInterface $em): JsonResponse
     {
         $team = $repo->find($id);
