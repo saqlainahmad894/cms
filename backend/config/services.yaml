@@ -12,7 +12,4 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    # ✅ Add this line
-    App\Controller\Auth\:
-        resource: '../src/Controller/Auth/'
-        tags: ['controller.service_arguments']
+
