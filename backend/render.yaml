@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: symfony-app
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: APP_ENV
+        value: prod
+      - key: APP_SECRET
+        value: your_random_secret
+      - key: DATABASE_URL
+        value: mysql://user:password@host:3306/dbname
