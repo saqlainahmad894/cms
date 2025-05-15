@@ -3,7 +3,6 @@ api_custom_login:
   controller: App\Controller\LoginController::login
   methods: [POST]
 
-
 admin_dashboard:
   path: /api/admin/dashboard
   controller: App\Controller\AdminDashboardController::index
