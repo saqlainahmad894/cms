@@ -25,14 +25,16 @@ class LoginController extends AbstractController
         $email = $data['email'] ?? null;
         $password = $data['password'] ?? null;
 
-        $user = $em->getRepository(User::class)->findOneBy(['email' => $email]);
-
-
         if (!$email || !$password) {
             return $this->json(['error' => 'Email and password required'], 400);
         }
 
         $user = $em->getRepository(User::class)->findOneBy(['email' => $email]);
+
+        if (!$user || !$hasher->isPasswordValid($user, $password)) {
+            return $this->json(['error' => 'Invalid credentials'], 401);
+        }
+
 
         if (!$user || !$hasher->isPasswordValid($user, $password)) {
             return $this->json(['error' => 'Invalid credentials'], 401);
