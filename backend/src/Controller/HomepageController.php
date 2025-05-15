@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
-
+namespace App\Controller;
 use App\Entity\HomepageImage;
 use App\Entity\HomepageText;
 use App\Entity\TeamMember;
