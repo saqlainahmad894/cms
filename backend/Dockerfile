@@ -17,26 +17,29 @@ COPY . .
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# --✅ Add your prod env variables here as ENV --
+# Allow Composer to run as root
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
+# Set prod env vars
 ENV APP_ENV=prod
 ENV APP_SECRET=your_super_secret_here
 ENV DATABASE_URL=mysql://user:password@host:3306/dbname
 ENV JWT_SECRET_KEY=/var/www/html/config/jwt/private.pem
 ENV JWT_PUBLIC_KEY=/var/www/html/config/jwt/public.pem
 ENV JWT_PASSPHRASE=your_passphrase
-ENV CORS_ALLOW_ORIGIN='^https?://.*$' 
+ENV CORS_ALLOW_ORIGIN='^https?://.*$'
 
-# --✅ Install Symfony dependencies optimized for prod --
+# Install Symfony dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# --✅ Dump prod env --
+# Dump prod env
 RUN composer dump-env prod
 
+# Fix permissions
 RUN mkdir -p /var/www/html/var /var/www/html/vendor \
     && chown -R www-data:www-data /var/www/html/var /var/www/html/vendor
 
-
-# Set the document root to /public
+# Set the document root
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 
