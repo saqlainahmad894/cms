@@ -29,10 +29,13 @@ ENV JWT_PUBLIC_KEY=/var/www/html/config/jwt/public.pem
 ENV JWT_PASSPHRASE=your_passphrase
 ENV CORS_ALLOW_ORIGIN='^https?://.*$'
 
+# ✅ Install Flex explicitly (needed for dump-env)
+RUN composer global require symfony/flex
+
 # Install Symfony dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Dump prod env
+# Dump prod env (now available after installing Flex)
 RUN composer dump-env prod
 
 # Fix permissions
