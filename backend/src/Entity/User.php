@@ -66,6 +66,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return array_map(fn($role) => $role->getName(), $this->roles->toArray());
     }
 
+
     /**
      * Returns role entities
      */

@@ -35,19 +35,20 @@ class LoginController extends AbstractController
             return $this->json(['error' => 'Invalid credentials'], 401);
         }
 
-
-        if (!$user || !$hasher->isPasswordValid($user, $password)) {
-            return $this->json(['error' => 'Invalid credentials'], 401);
+        try {
+            $token = $jwtManager->create($user);
+        } catch (\Exception $e) {
+            return $this->json([
+                'error' => 'Token generation failed',
+                'details' => $e->getMessage()
+            ], 500);
         }
-
-        $token = $jwtManager->create($user);
 
         return $this->json([
             'token' => $token,
             'user' => [
                 'id' => $user->getId(),
                 'email' => $user->getEmail(),
-                // Add more user fields if needed
             ]
         ]);
     }
