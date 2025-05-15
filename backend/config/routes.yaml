@@ -1,0 +1,109 @@
+admin_dashboard:
+  path: /api/admin/dashboard
+  controller: App\Controller\AdminDashboardController::index
+  methods: [GET]
+
+admin_client_list:
+  path: /api/admin/clients
+  controller: App\Controller\Admin\ClientAdminController::list
+  methods: [GET]
+
+admin_client_view:
+  path: /api/admin/clients/{id}
+  controller: App\Controller\Admin\ClientAdminController::view
+  methods: [GET]
+
+admin_client_delete:
+  path: /api/admin/clients/{id}/delete
+  controller: App\Controller\Admin\ClientAdminController::delete
+  methods: [DELETE]
+
+admin_client_add:
+  path: /api/admin/clients/add
+  controller: App\Controller\Admin\ClientAdminController::add
+  methods: [POST]
+
+admin_client_edit:
+  path: /api/admin/clients/{id}/edit
+  controller: App\Controller\Admin\ClientAdminController::edit
+  methods: [PUT]
+
+admin_client_case_list:
+  path: /api/admin/client-cases/{userId}
+  controller: App\Controller\Admin\ClientCaseController::list
+  methods: [GET]
+
+admin_client_case_view:
+  path: /api/admin/client-cases/view/{id}
+  controller: App\Controller\Admin\ClientCaseController::view
+  methods: [GET]
+
+admin_client_case_add:
+  path: /api/admin/client-cases/add
+  controller: App\Controller\Admin\ClientCaseController::add
+  methods: [POST]
+
+admin_client_case_edit:
+  path: /api/admin/client-cases/{id}/edit
+  controller: App\Controller\Admin\ClientCaseController::edit
+  methods: [PUT]
+
+admin_client_case_upload_document:
+  path: /api/admin/client-cases/{caseId}/upload-document
+  controller: App\Controller\Admin\ClientCaseController::uploadDocument
+  methods: [POST]
+
+admin_client_case_documents:
+  path: /api/admin/client-cases/{caseId}/documents
+  controller: App\Controller\Admin\ClientCaseController::listDocuments
+  methods: [GET]
+
+admin_homepage_get_images:
+  path: /api/admin/homepage/images
+  controller: App\Controller\Admin\HomepageController::getImages
+  methods: [GET]
+
+admin_homepage_upload_image:
+  path: /api/admin/homepage/images/upload
+  controller: App\Controller\Admin\HomepageController::uploadImage
+  methods: [POST]
+
+admin_homepage_get_texts:
+  path: /api/admin/homepage/texts
+  controller: App\Controller\Admin\HomepageController::getTexts
+  methods: [GET]
+
+admin_homepage_add_text:
+  path: /api/admin/homepage/texts/add
+  controller: App\Controller\Admin\HomepageController::addText
+  methods: [POST]
+
+update_homepage_text:
+  path: /api/admin/homepage/texts/update/{id}
+  controller: App\Controller\Admin\HomepageController::updateText
+  methods: [PUT]
+
+delete_homepage_text:
+  path: /api/admin/homepage/texts/delete/{id}
+  controller: App\Controller\Admin\HomepageController::deleteText
+  methods: [DELETE]
+
+get_team_members:
+  path: /api/admin/homepage/teams
+  controller: App\Controller\Admin\HomepageController::getTeams
+  methods: [GET]
+
+add_team_member:
+  path: /api/admin/homepage/teams/add
+  controller: App\Controller\Admin\HomepageController::addTeamMember
+  methods: [POST]
+
+update_team_member:
+  path: /api/admin/homepage/teams/update/{id}
+  controller: App\Controller\Admin\HomepageController::updateTeamMember
+  methods: [POST]
+
+delete_team_member:
+  path: /api/admin/homepage/teams/delete/{id}
+  controller: App\Controller\Admin\HomepageController::deleteTeamMember
+  methods: [DELETE]
