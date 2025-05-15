@@ -14,5 +14,5 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
-    App\Controller\Admin\HomepageController:
+    App\Controller\HomepageController:
         tags: ["controller.service_arguments"]
