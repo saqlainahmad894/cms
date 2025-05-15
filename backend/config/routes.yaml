@@ -73,6 +73,11 @@ admin_homepage_upload_image:
   controller: App\Controller\HomepageController::uploadImage
   methods: [POST]
 
+delete_homepage_image:
+  path: /api/admin/homepage/images/delete/{id}
+  controller: App\Controller\HomepageController::deleteImage
+  methods: [DELETE]
+
 admin_homepage_get_texts:
   path: /api/admin/homepage/texts
   controller: App\Controller\HomepageController::getTexts

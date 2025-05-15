@@ -22,17 +22,10 @@ class LoginController extends AbstractController
     ): JsonResponse {
         $data = json_decode($request->getContent(), true);
 
-        // At top of login() method
-        file_put_contents(__DIR__ . '/../../../var/log/debug-login.log', "Login hit at " . date('Y-m-d H:i:s') . "\n", FILE_APPEND);
-
         $email = $data['email'] ?? null;
         $password = $data['password'] ?? null;
 
-        file_put_contents(__DIR__ . '/../../../var/log/debug-login.log', "Email: $email\n", FILE_APPEND);
-
         $user = $em->getRepository(User::class)->findOneBy(['email' => $email]);
-
-        file_put_contents(__DIR__ . '/../../../var/log/debug-login.log', "User found: " . ($user ? 'yes' : 'no') . "\n", FILE_APPEND);
 
 
         if (!$email || !$password) {

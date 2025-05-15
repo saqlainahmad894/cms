@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\HomepageImage;
 use App\Entity\HomepageText;
 use App\Entity\TeamMember;
@@ -73,6 +74,29 @@ class HomepageController extends AbstractController
         $em->flush();
 
         return $this->json(['message' => 'Image uploaded']);
+    }
+
+    #[Route('/images/delete/{id}', name: 'delete_homepage_image', methods: ['DELETE'])]
+    public function deleteImage(int $id, HomepageImageRepository $repo, EntityManagerInterface $em): JsonResponse
+    {
+        $image = $repo->find($id);
+        if (!$image) {
+            return $this->json(['message' => 'Image not found'], 404);
+        }
+
+        // Delete actual file from disk (optional)
+        $pathParts = parse_url($image->getImagePath());
+        if (isset($pathParts['path'])) {
+            $filePath = '.' . $pathParts['path']; // relative path
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+        }
+
+        $em->remove($image);
+        $em->flush();
+
+        return $this->json(['message' => 'Image deleted']);
     }
 
     #[Route('/texts', name: 'get_homepage_texts', methods: ['GET'])]
